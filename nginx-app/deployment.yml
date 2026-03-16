@@ -16,7 +16,7 @@ spec:
         app: nginx
     spec:
       containers:
-      - image: nginx
+      - image: zauberzeug/nicegui:latest
         name: nginx
         imagePullPolicy: Always
         ports: 
