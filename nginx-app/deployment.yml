@@ -1,23 +1,34 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    app: nginx
-  name: nginx
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: nginx
-  strategy: {}
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-      - image: zauberzeug/nicegui:latest
-        name: nginx
-        imagePullPolicy: Always
-        ports: 
-        - containerPort: 80
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: nicegui
+    labels:
+      app: nicegui
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: nicegui
+    template:
+      metadata:
+        labels:
+          app: nicegui
+      spec:
+        containers:
+          - name: nicegui
+            image: zauberzeug/nicegui:latest
+            imagePullPolicy: Always
+            ports:
+              - containerPort: 8080
+  ---
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: nicegui
+  spec:
+    selector:
+      app: nicegui
+    ports:
+      - port: 80
+        targetPort: 8080
+    type: ClusterIP
