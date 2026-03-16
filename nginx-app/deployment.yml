@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: nicegui
-          image: zauberzeug/nicegui:latest
+          image: zauberzeug/nicegui:3.8.0
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
